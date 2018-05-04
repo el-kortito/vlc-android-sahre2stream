@@ -22,6 +22,12 @@ checkfail()
 # Setup all that stuff correctly.
 # Get the latest Android SDK Platform or modify numbers in configure.sh and libvlc/default.properties.
 
+ANDROID_NDK=/home/itai/android-sdk
+ANDROID_SDK=/home/itai/android-ndk
+
+export ANDROID_SDK=/home/itai/android-sdk
+export ANDROID_NDK=/home/itai/android-ndk/android-ndk-r14b
+
 while [ $# -gt 0 ]; do
     case $1 in
         help|--help|-h)
