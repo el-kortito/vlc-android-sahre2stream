@@ -32,16 +32,12 @@ public class ShareToStreamActivity extends BaseActivity {
     private void setPreferences() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         videoSwitchPref = pref.getString("video_action_switch", null);
-        pref.edit().putString("video_action_switch", "1").apply();
+        pref.edit().putString("video_action_switch", "1").commit();
     }
 
     private void resetPreferences() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        if (videoSwitchPref == null) {
-            pref.edit().remove("video_action_switch").apply();
-        } else {
-            pref.edit().putString("video_action_switch", videoSwitchPref).apply();
-        }
+        pref.edit().putString("video_action_switch", videoSwitchPref).apply();
     }
 
     private void setupStream (String url){
