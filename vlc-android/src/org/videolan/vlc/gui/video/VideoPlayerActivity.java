@@ -208,6 +208,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVLCVout.C
     private static final int LOADING_ANIMATION = 8;
     static final int SHOW_INFO = 9;
     static final int HIDE_INFO = 10;
+    private  static final int PLAY_AS_AUDIO = 11;
 
     private static final int LOADING_ANIMATION_DELAY = 1000;
 
@@ -1647,6 +1648,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVLCVout.C
                 case SHOW_INFO:
                     showOverlay();
                     break;
+                case PLAY_AS_AUDIO:
+                    switchToAudioMode(true);
+                    break;
             }
         }
     };
@@ -1672,6 +1676,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVLCVout.C
         setESTracks();
         if (mTitle != null && mTitle.length() == 0)
             mTitle.setText(mw.getTitle());
+
+        if (!VLCApplication.showTvUi() && getIntent().getBooleanExtra("play_as_audio", false)) {
+            mHandler.sendEmptyMessageDelayed(PLAY_AS_AUDIO, 3000);
+        }
     }
 
     private void endReached() {
